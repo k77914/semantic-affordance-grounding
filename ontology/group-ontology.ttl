@@ -43,42 +43,42 @@ g13:group13
 
 g13:member01
     a foaf:Person ;
-    rdfs:label "Chen Shih-Yen"@en ;
+    rdfs:label "Shih-Yen Chen"@en ;
     rdfs:comment "A member of Group 13."@en ;
     dcterms:identifier "112550004" ;
     foaf:name "陳詩諺"@zh-Hant .
 
 g13:member02
     a foaf:Person ;
-    rdfs:label "Hsieh Chia-Chen"@en ;
+    rdfs:label "Chia-Chen Hsieh"@en ;
     rdfs:comment "A member of Group 13."@en ;
     dcterms:identifier "112550019" ;
     foaf:name "謝嘉宸"@zh-Hant .
 
 g13:member03
     a foaf:Person ;
-    rdfs:label "Hsu Wei-Chen"@en ;
+    rdfs:label "Wei-Chen Hsu"@en ;
     rdfs:comment "A member of Group 13."@en ;
     dcterms:identifier "112550047" ;
     foaf:name "徐瑋晨"@zh-Hant .
 
 g13:member04
     a foaf:Person ;
-    rdfs:label "Tsai Cheng-Hsu"@en ;
+    rdfs:label "Cheng-Hsu Tsai"@en ;
     rdfs:comment "A member of Group 13."@en ;
     dcterms:identifier "112550099" ;
     foaf:name "蔡烝旭"@zh-Hant .
 
 g13:member05
     a foaf:Person ;
-    rdfs:label "Yu Hsiang-Yu"@en ;
+    rdfs:label "Hsiang-Yu Yu"@en ;
     rdfs:comment "A member of Group 13."@en ;
     dcterms:identifier "112550103" ;
     foaf:name "游翔宇"@zh-Hant .
 
 g13:member06
     a foaf:Person ;
-    rdfs:label "Sun Fu-Kang"@en ;
+    rdfs:label "Fran"@en ;
     rdfs:comment "A member of Group 13."@en ;
     dcterms:identifier "112550176" ;
     foaf:name "孫傅康"@zh-Hant .
@@ -92,6 +92,7 @@ cap:GraspableObject
     rdfs:label "graspable object"@en ;
     rdfs:comment
         "A physical object inferred to be graspable because it has at least one grasping affordance."@en ;
+    rdfs:subClassOf cap:PhysicalObject ;
     owl:equivalentClass [
         a owl:Class ;
         owl:intersectionOf (
