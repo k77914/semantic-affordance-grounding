@@ -62,7 +62,6 @@ This distinction prevents task relevance from being confused with graspability. 
 | `g13:fork01` | `cap:Fork` | `cap:TargetObject` | grasping | Yes |
 | `g13:plate01` | `cap:Plate` | `cap:ReferenceObject` | support | No |
 | `g13:block01` | `cap:ToyBlock` | `cap:CollectableObject` | grasping | Yes |
-| `g13:block02` | `cap:ToyBlock` | `cap:CollectableObject` | grasping | Yes |
 | `g13:basket01` | `cap:Basket` | `cap:ContainerTarget` | containment | No |
 
 The ontology also defines task individuals for cup stacking, cutlery arrangement, and toy block collection. These task individuals connect tasks to target and reference objects with `cap:hasTargetObject` and `cap:hasReferenceObject`.
@@ -90,7 +89,6 @@ g13:pinkCup01
 g13:knife01
 g13:fork01
 g13:block01
-g13:block02
 ```
 
 The following individuals are not expected to be inferred as graspable under the current model:
@@ -106,7 +104,7 @@ This is because `g13:plate01` has a support affordance and `g13:basket01` has a 
 
 The required query is stored in `queries/graspable_objects.rq`. It retrieves all inferred `cap:GraspableObject` individuals and optionally returns each object's perception label and task role.
 
-The expected result contains the six graspable object individuals listed above. The query must be executed over an inferred model or a graph containing the inferred class memberships. Querying only the raw asserted graph is insufficient unless the reasoner has already materialized the inferred `rdf:type cap:GraspableObject` triples.
+The expected result contains the five graspable object individuals listed above. The query must be executed over an inferred model or a graph containing the inferred class memberships. Querying only the raw asserted graph is insufficient unless the reasoner has already materialized the inferred `rdf:type cap:GraspableObject` triples.
 
 The optional `queries/task_objects.rq` query lists all modeled physical task objects, their object types, object labels, task roles, and asserted affordance individuals. This query is useful for debugging the asserted graph before reasoning.
 

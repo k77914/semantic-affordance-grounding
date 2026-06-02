@@ -76,7 +76,6 @@ The ontology distinguishes four semantic layers:
 | `g13:fork01` | `cap:Fork` | `cap:TargetObject` | `g13:graspingAffordance` | Yes |
 | `g13:plate01` | `cap:Plate` | `cap:ReferenceObject` | `g13:supportAffordance` | No |
 | `g13:block01` | `cap:ToyBlock` | `cap:CollectableObject` | `g13:graspingAffordance` | Yes |
-| `g13:block02` | `cap:ToyBlock` | `cap:CollectableObject` | `g13:graspingAffordance` | Yes |
 | `g13:basket01` | `cap:Basket` | `cap:ContainerTarget` | `g13:containmentAffordance` | No |
 
 ## Reasoning Pattern
@@ -103,7 +102,6 @@ g13:pinkCup01  rdf:type  cap:GraspableObject
 g13:knife01    rdf:type  cap:GraspableObject
 g13:fork01     rdf:type  cap:GraspableObject
 g13:block01    rdf:type  cap:GraspableObject
-g13:block02    rdf:type  cap:GraspableObject
 ```
 
 `g13:plate01` and `g13:basket01` are task-relevant objects but are not expected to be inferred as graspable in this model because they are asserted with support and containment affordances, respectively, not grasping affordances.
@@ -154,7 +152,6 @@ The exact formatting depends on the SPARQL tool, but the required query should r
 | `g13:knife01` | `knife` | `cap:TargetObject` |
 | `g13:fork01` | `fork` | `cap:TargetObject` |
 | `g13:block01` | `toy_block` | `cap:CollectableObject` |
-| `g13:block02` | `toy_block` | `cap:CollectableObject` |
 
 ## What Is Inferred, Not Asserted
 
