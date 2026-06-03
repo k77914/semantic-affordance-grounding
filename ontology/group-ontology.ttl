@@ -41,6 +41,25 @@ g13:group13
                  g13:member05,
                  g13:member06 .
 
+#################################################################
+# Bonus extension: gripper capability
+#################################################################
+
+g13:hasMaxGripperWidth
+    a owl:DatatypeProperty ;
+    rdfs:domain cap:EndEffector ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has maximum gripper width"@en ;
+    rdfs:comment
+        "Records the maximum object width that the Group 13 gripper model can hold in this semantic extension."@en .
+
+g13:parallelGripper
+    a cap:EndEffector ;
+    rdfs:label "parallel gripper"@en ;
+    rdfs:comment
+        "The simplified robot end effector used by Group 13 for the optional gripper-width extension."@en ;
+    g13:hasMaxGripperWidth "0.080"^^xsd:decimal .
+
 g13:member01
     a foaf:Person ;
     rdfs:label "Shih-Yen Chen"@en ;
@@ -146,6 +165,8 @@ g13:blueCup01
     cap:hasObjectLabel "blue_cup" ;
     cap:hasTaskRole cap:TargetObject ;
     cap:hasAffordance g13:graspingAffordance, g13:stackabilityAffordance ;
+    cap:canBeManipulatedBy g13:parallelGripper ;
+    cap:hasApproxWidth "0.065"^^xsd:decimal ;
     cap:hasPoseFrame "world/object_blue_cup" .
 
 g13:pinkCup01
@@ -157,6 +178,8 @@ g13:pinkCup01
     cap:hasObjectLabel "pink_cup" ;
     cap:hasTaskRole cap:TargetObject ;
     cap:hasAffordance g13:graspingAffordance, g13:stackabilityAffordance ;
+    cap:canBeManipulatedBy g13:parallelGripper ;
+    cap:hasApproxWidth "0.065"^^xsd:decimal ;
     cap:hasPoseFrame "world/object_pink_cup" .
 
 g13:knife01
@@ -167,6 +190,8 @@ g13:knife01
     cap:hasObjectLabel "knife" ;
     cap:hasTaskRole cap:TargetObject ;
     cap:hasAffordance g13:graspingAffordance ;
+    cap:canBeManipulatedBy g13:parallelGripper ;
+    cap:hasApproxWidth "0.020"^^xsd:decimal ;
     cap:hasPoseFrame "world/object_knife" .
 
 g13:fork01
@@ -177,6 +202,8 @@ g13:fork01
     cap:hasObjectLabel "fork" ;
     cap:hasTaskRole cap:TargetObject ;
     cap:hasAffordance g13:graspingAffordance ;
+    cap:canBeManipulatedBy g13:parallelGripper ;
+    cap:hasApproxWidth "0.025"^^xsd:decimal ;
     cap:hasPoseFrame "world/object_fork" .
 
 g13:plate01
@@ -187,6 +214,7 @@ g13:plate01
     cap:hasObjectLabel "plate" ;
     cap:hasTaskRole cap:ReferenceObject ;
     cap:hasAffordance g13:supportAffordance ;
+    cap:hasApproxWidth "0.190"^^xsd:decimal ;
     cap:hasPoseFrame "world/object_plate" .
 
 g13:block01
@@ -197,6 +225,8 @@ g13:block01
     cap:hasObjectLabel "toy_block" ;
     cap:hasTaskRole cap:CollectableObject ;
     cap:hasAffordance g13:graspingAffordance ;
+    cap:canBeManipulatedBy g13:parallelGripper ;
+    cap:hasApproxWidth "0.035"^^xsd:decimal ;
     cap:hasPoseFrame "world/object_block_01" .
 
 g13:basket01
@@ -207,6 +237,7 @@ g13:basket01
     cap:hasObjectLabel "basket" ;
     cap:hasTaskRole cap:ContainerTarget ;
     cap:hasAffordance g13:containmentAffordance ;
+    cap:hasApproxWidth "0.220"^^xsd:decimal ;
     cap:hasPoseFrame "world/object_basket" .
 
 #################################################################

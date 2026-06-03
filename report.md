@@ -20,7 +20,11 @@ The repository is organized as follows:
 | `ontology/inferred-results.ttl` | Generated after OWL reasoning. |
 | `queries/graspable_objects.rq` | Required query for inferred graspable objects. |
 | `queries/task_objects.rq` | Optional query for modeled task objects. |
+| `queries/gripper_fit_candidates.rq` | Optional bonus query for inferred graspable objects that fit the modeled gripper width. |
+| `validation/shapes.ttl` | Optional bonus SHACL validation shapes. |
 | `results/graspable_objects_output.txt` | Generated SPARQL query output. |
+| `results/gripper_fit_candidates_output.txt` | Generated bonus gripper-fit query output. |
+| `results/shacl_validation_output.txt` | Generated bonus SHACL validation output. |
 | `results/screenshots/` | Optional GUI verification screenshots. |
 
 ## 3. Namespace Policy
@@ -66,7 +70,25 @@ This distinction prevents task relevance from being confused with graspability. 
 
 The ontology also defines task individuals for cup stacking, cutlery arrangement, and toy block collection. These task individuals connect tasks to target and reference objects with `cap:hasTargetObject` and `cap:hasReferenceObject`.
 
-## 6. Key Axioms and Reasoning Pattern
+## 6. Bonus Extension: Gripper Width and SHACL
+
+The optional advanced extension adds a simple gripper-specific constraint. The ontology defines `g13:parallelGripper` as a `cap:EndEffector` and records its maximum gripper width with `g13:hasMaxGripperWidth`.
+
+Each physical task object is annotated with `cap:hasApproxWidth`. The expected graspable objects are narrower than the modeled maximum width of `0.080` meters:
+
+| Instance | Approximate width | Fits gripper |
+|---|---:|---|
+| `g13:blueCup01` | 0.065 | Yes |
+| `g13:pinkCup01` | 0.065 | Yes |
+| `g13:knife01` | 0.020 | Yes |
+| `g13:fork01` | 0.025 | Yes |
+| `g13:block01` | 0.035 | Yes |
+| `g13:plate01` | 0.190 | No |
+| `g13:basket01` | 0.220 | No |
+
+The extension also includes SHACL shapes in `validation/shapes.ttl`. The shapes check that task objects have required grounding fields and that objects with a grasping affordance do not exceed the modeled maximum gripper width.
+
+## 7. Key Axioms and Reasoning Pattern
 
 The main inferred class is `cap:GraspableObject`. It is defined in `ontology/group-ontology.ttl` using an OWL equivalent-class expression:
 
@@ -79,7 +101,7 @@ This axiom means that any physical object with at least one grasping affordance 
 
 The group ontology asserts object types, task roles, and affordance relations. It does not manually assert the final `cap:GraspableObject` class memberships for the task object individuals. Those memberships should be produced by the reasoning workflow.
 
-## 7. Expected Inferences
+## 8. Expected Inferences
 
 The following individuals are expected to be inferred as `cap:GraspableObject`:
 
@@ -100,7 +122,7 @@ g13:basket01
 
 This is because `g13:plate01` has a support affordance and `g13:basket01` has a containment affordance, but neither is asserted with a grasping affordance in this task model.
 
-## 8. SPARQL Query Design
+## 9. SPARQL Query Design
 
 The required query is stored in `queries/graspable_objects.rq`. It retrieves all inferred `cap:GraspableObject` individuals and optionally returns each object's perception label and task role.
 
@@ -108,7 +130,9 @@ The expected result contains the five graspable object individuals listed above.
 
 The optional `queries/task_objects.rq` query lists all modeled physical task objects, their object types, object labels, task roles, and asserted affordance individuals. This query is useful for debugging the asserted graph before reasoning.
 
-## 9. Reasoning and Result Generation Workflow
+The bonus `queries/gripper_fit_candidates.rq` query retrieves inferred `cap:GraspableObject` individuals whose `cap:hasApproxWidth` is less than or equal to the maximum width of `g13:parallelGripper`.
+
+## 10. Reasoning and Result Generation Workflow
 
 The recommended workflow is:
 
@@ -130,12 +154,33 @@ arq --data ontology/imports/course-affordance.ttl \
     > results/graspable_objects_output.txt
 ```
 
-## 10. Design Choices and Limitations
+The bonus gripper-fit query can be generated with:
 
-The model focuses on semantic affordance grounding rather than geometric grasp planning. It does not check object dimensions, mass, pose uncertainty, collision constraints, gripper aperture, or learned policy success rates.
+```bash
+arq --data ontology/imports/course-affordance.ttl \
+    --data ontology/group-ontology.ttl \
+    --data ontology/inferred-results.ttl \
+    --query queries/gripper_fit_candidates.rq \
+    > results/gripper_fit_candidates_output.txt
+```
+
+The SHACL validation report can be generated with:
+
+```bash
+pyshacl -s validation/shapes.ttl \
+    --imports \
+    -i rdfs \
+    -f human \
+    ontology/group-ontology.ttl \
+    > results/shacl_validation_output.txt
+```
+
+## 11. Design Choices and Limitations
+
+The model focuses on semantic affordance grounding rather than full geometric grasp planning. The optional bonus extension checks approximate object width against a simple maximum gripper width, but it does not check full object geometry, mass, pose uncertainty, collision constraints, or learned policy success rates.
 
 The plate and basket are intentionally not inferred as graspable in the current model. They are task-relevant objects, but their modeled affordances are support and containment, respectively. If a later robot workflow requires moving the plate or basket, the ontology can be extended by adding task-specific grasping affordances for those objects.
 
-## 11. Conclusion
+## 12. Conclusion
 
 This ontology provides a compact semantic layer for the AI Capstone task environment. It grounds perceived or simulated objects as ontology individuals, distinguishes object type from task role and affordance, defines a formal graspability reasoning pattern, and provides SPARQL queries for retrieving inferred graspable objects.

@@ -1,0 +1,12 @@
+PREFIX cap: <https://hcis.io/ontology/aicapstone/2026/>
+PREFIX g13: <https://hcis.io/ontology/aicapstone/2026/group13/>
+
+SELECT DISTINCT ?obj ?label ?width ?maxWidth
+WHERE {
+  g13:parallelGripper g13:hasMaxGripperWidth ?maxWidth .
+  ?obj a cap:GraspableObject ;
+       cap:hasApproxWidth ?width .
+  OPTIONAL { ?obj cap:hasObjectLabel ?label . }
+  FILTER (?width <= ?maxWidth)
+}
+ORDER BY ?obj
