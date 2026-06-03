@@ -1,0 +1,9 @@
+------------------------------------------------------------------------------------------------------
+| obj                                                          | label       | role                  |
+======================================================================================================
+| <https://hcis.io/ontology/aicapstone/2026/group13/block01>   | "toy_block" | cap:CollectableObject |
+| <https://hcis.io/ontology/aicapstone/2026/group13/blueCup01> | "blue_cup"  | cap:TargetObject      |
+| <https://hcis.io/ontology/aicapstone/2026/group13/fork01>    | "fork"      | cap:TargetObject      |
+| <https://hcis.io/ontology/aicapstone/2026/group13/knife01>   | "knife"     | cap:TargetObject      |
+| <https://hcis.io/ontology/aicapstone/2026/group13/pinkCup01> | "pink_cup"  | cap:TargetObject      |
+------------------------------------------------------------------------------------------------------

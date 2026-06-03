@@ -1,0 +1,51 @@
+@prefix cap:  <https://hcis.io/ontology/aicapstone/2026/> .
+@prefix g13:  <https://hcis.io/ontology/aicapstone/2026/group13/> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+g13:PhysicalObjectRequiredFieldsShape
+    a sh:NodeShape ;
+    sh:targetClass cap:PhysicalObject ;
+    sh:property [
+        sh:path cap:hasObjectLabel ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Each physical task object should have a perception or simulation object label."@en
+    ] ;
+    sh:property [
+        sh:path cap:hasTaskRole ;
+        sh:minCount 1 ;
+        sh:message "Each physical task object should have at least one task role."@en
+    ] ;
+    sh:property [
+        sh:path cap:hasPoseFrame ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Each physical task object should have a pose-frame identifier."@en
+    ] ;
+    sh:property [
+        sh:path cap:hasApproxWidth ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:message "Each physical task object should have an approximate width for the bonus gripper-width check."@en
+    ] .
+
+g13:GraspingObjectFitsGripperShape
+    a sh:NodeShape ;
+    sh:targetClass cap:PhysicalObject ;
+    sh:sparql [
+        sh:message "Objects with a grasping affordance should not exceed the modeled gripper maximum width."@en ;
+        sh:select """
+            PREFIX cap: <https://hcis.io/ontology/aicapstone/2026/>
+            PREFIX g13: <https://hcis.io/ontology/aicapstone/2026/group13/>
+
+            SELECT $this
+            WHERE {
+              $this cap:hasAffordance ?affordance ;
+                    cap:hasApproxWidth ?width .
+              ?affordance a cap:GraspingAffordance .
+              g13:parallelGripper g13:hasMaxGripperWidth ?maxWidth .
+              FILTER (?width > ?maxWidth)
+            }
+        """ ;
+    ] .

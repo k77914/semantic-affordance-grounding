@@ -1,0 +1,281 @@
+@prefix : <http://www.semanticweb.org/user/ontologies/2026/5/untitled-ontology-6#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/user/ontologies/2026/5/untitled-ontology-6> .
+
+<http://www.semanticweb.org/user/ontologies/2026/5/untitled-ontology-6> rdf:type owl:Ontology .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://xmlns.com/foaf/0.1/Group
+<http://xmlns.com/foaf/0.1/Group> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/Affordance
+<https://hcis.io/ontology/aicapstone/2026/Affordance> rdf:type owl:Class .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/Basket
+<https://hcis.io/ontology/aicapstone/2026/Basket> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/CollectableObject
+<https://hcis.io/ontology/aicapstone/2026/CollectableObject> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ContainerTarget
+<https://hcis.io/ontology/aicapstone/2026/ContainerTarget> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ContainmentAffordance
+<https://hcis.io/ontology/aicapstone/2026/ContainmentAffordance> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/Affordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/Cup
+<https://hcis.io/ontology/aicapstone/2026/Cup> rdf:type owl:Class ;
+                                               rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/GraspableObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/EndEffector
+<https://hcis.io/ontology/aicapstone/2026/EndEffector> rdf:type owl:Class .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/Fork
+<https://hcis.io/ontology/aicapstone/2026/Fork> rdf:type owl:Class ;
+                                                rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/GraspableObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/GraspableObject
+<https://hcis.io/ontology/aicapstone/2026/GraspableObject> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/GraspingAffordance
+<https://hcis.io/ontology/aicapstone/2026/GraspingAffordance> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/Affordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/Knife
+<https://hcis.io/ontology/aicapstone/2026/Knife> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/GraspableObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ManipulationTask
+<https://hcis.io/ontology/aicapstone/2026/ManipulationTask> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/Task> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/PhysicalObject
+<https://hcis.io/ontology/aicapstone/2026/PhysicalObject> rdf:type owl:Class .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/Plate
+<https://hcis.io/ontology/aicapstone/2026/Plate> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ReferenceObject
+<https://hcis.io/ontology/aicapstone/2026/ReferenceObject> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/StackabilityAffordance
+<https://hcis.io/ontology/aicapstone/2026/StackabilityAffordance> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/Affordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/SupportAffordance
+<https://hcis.io/ontology/aicapstone/2026/SupportAffordance> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/Affordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/TargetObject
+<https://hcis.io/ontology/aicapstone/2026/TargetObject> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/Task
+<https://hcis.io/ontology/aicapstone/2026/Task> rdf:type owl:Class .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/TaskRole
+<https://hcis.io/ontology/aicapstone/2026/TaskRole> rdf:type owl:Class .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ToyBlock
+<https://hcis.io/ontology/aicapstone/2026/ToyBlock> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <https://hcis.io/ontology/aicapstone/2026/GraspableObject> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://hcis.io/ontology/aicapstone/2026/CollectableObject
+<https://hcis.io/ontology/aicapstone/2026/CollectableObject> rdf:type owl:NamedIndividual ,
+                                                                      <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ContainerTarget
+<https://hcis.io/ontology/aicapstone/2026/ContainerTarget> rdf:type owl:NamedIndividual ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ReferenceObject
+<https://hcis.io/ontology/aicapstone/2026/ReferenceObject> rdf:type owl:NamedIndividual ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/TargetObject
+<https://hcis.io/ontology/aicapstone/2026/TargetObject> rdf:type owl:NamedIndividual ,
+                                                                 <https://hcis.io/ontology/aicapstone/2026/TaskRole> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/ccyont
+<https://hcis.io/ontology/aicapstone/2026/ccyont> rdf:type owl:NamedIndividual ,
+                                                           <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/basket01
+<https://hcis.io/ontology/aicapstone/2026/group13/basket01> rdf:type owl:NamedIndividual ,
+                                                                     <https://hcis.io/ontology/aicapstone/2026/Basket> ,
+                                                                     <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/block01
+<https://hcis.io/ontology/aicapstone/2026/group13/block01> rdf:type owl:NamedIndividual ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/GraspableObject> ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/ToyBlock> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/blueCup01
+<https://hcis.io/ontology/aicapstone/2026/group13/blueCup01> rdf:type owl:NamedIndividual ,
+                                                                      <https://hcis.io/ontology/aicapstone/2026/Cup> ,
+                                                                      <https://hcis.io/ontology/aicapstone/2026/GraspableObject> ,
+                                                                      <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/containmentAffordance
+<https://hcis.io/ontology/aicapstone/2026/group13/containmentAffordance> rdf:type owl:NamedIndividual ,
+                                                                                  <https://hcis.io/ontology/aicapstone/2026/Affordance> ,
+                                                                                  <https://hcis.io/ontology/aicapstone/2026/ContainmentAffordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/cupStackingTask
+<https://hcis.io/ontology/aicapstone/2026/group13/cupStackingTask> rdf:type owl:NamedIndividual ,
+                                                                            <https://hcis.io/ontology/aicapstone/2026/ManipulationTask> ,
+                                                                            <https://hcis.io/ontology/aicapstone/2026/Task> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/cutleryArrangementTask
+<https://hcis.io/ontology/aicapstone/2026/group13/cutleryArrangementTask> rdf:type owl:NamedIndividual ,
+                                                                                   <https://hcis.io/ontology/aicapstone/2026/ManipulationTask> ,
+                                                                                   <https://hcis.io/ontology/aicapstone/2026/Task> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/fork01
+<https://hcis.io/ontology/aicapstone/2026/group13/fork01> rdf:type owl:NamedIndividual ,
+                                                                   <https://hcis.io/ontology/aicapstone/2026/Fork> ,
+                                                                   <https://hcis.io/ontology/aicapstone/2026/GraspableObject> ,
+                                                                   <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/graspingAffordance
+<https://hcis.io/ontology/aicapstone/2026/group13/graspingAffordance> rdf:type owl:NamedIndividual ,
+                                                                               <https://hcis.io/ontology/aicapstone/2026/Affordance> ,
+                                                                               <https://hcis.io/ontology/aicapstone/2026/GraspingAffordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/group13
+<https://hcis.io/ontology/aicapstone/2026/group13/group13> rdf:type owl:NamedIndividual ,
+                                                                    <http://xmlns.com/foaf/0.1/Group> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/knife01
+<https://hcis.io/ontology/aicapstone/2026/group13/knife01> rdf:type owl:NamedIndividual ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/GraspableObject> ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/Knife> ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/member01
+<https://hcis.io/ontology/aicapstone/2026/group13/member01> rdf:type owl:NamedIndividual ,
+                                                                     <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/member02
+<https://hcis.io/ontology/aicapstone/2026/group13/member02> rdf:type owl:NamedIndividual ,
+                                                                     <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/member03
+<https://hcis.io/ontology/aicapstone/2026/group13/member03> rdf:type owl:NamedIndividual ,
+                                                                     <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/member04
+<https://hcis.io/ontology/aicapstone/2026/group13/member04> rdf:type owl:NamedIndividual ,
+                                                                     <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/member05
+<https://hcis.io/ontology/aicapstone/2026/group13/member05> rdf:type owl:NamedIndividual ,
+                                                                     <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/member06
+<https://hcis.io/ontology/aicapstone/2026/group13/member06> rdf:type owl:NamedIndividual ,
+                                                                     <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/parallelGripper
+<https://hcis.io/ontology/aicapstone/2026/group13/parallelGripper> rdf:type owl:NamedIndividual ,
+                                                                            <https://hcis.io/ontology/aicapstone/2026/EndEffector> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/pinkCup01
+<https://hcis.io/ontology/aicapstone/2026/group13/pinkCup01> rdf:type owl:NamedIndividual ,
+                                                                      <https://hcis.io/ontology/aicapstone/2026/Cup> ,
+                                                                      <https://hcis.io/ontology/aicapstone/2026/GraspableObject> ,
+                                                                      <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/plate01
+<https://hcis.io/ontology/aicapstone/2026/group13/plate01> rdf:type owl:NamedIndividual ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/PhysicalObject> ,
+                                                                    <https://hcis.io/ontology/aicapstone/2026/Plate> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/stackabilityAffordance
+<https://hcis.io/ontology/aicapstone/2026/group13/stackabilityAffordance> rdf:type owl:NamedIndividual ,
+                                                                                   <https://hcis.io/ontology/aicapstone/2026/Affordance> ,
+                                                                                   <https://hcis.io/ontology/aicapstone/2026/StackabilityAffordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/supportAffordance
+<https://hcis.io/ontology/aicapstone/2026/group13/supportAffordance> rdf:type owl:NamedIndividual ,
+                                                                              <https://hcis.io/ontology/aicapstone/2026/Affordance> ,
+                                                                              <https://hcis.io/ontology/aicapstone/2026/SupportAffordance> .
+
+
+###  https://hcis.io/ontology/aicapstone/2026/group13/toyBlockCollectionTask
+<https://hcis.io/ontology/aicapstone/2026/group13/toyBlockCollectionTask> rdf:type owl:NamedIndividual ,
+                                                                                   <https://hcis.io/ontology/aicapstone/2026/ManipulationTask> ,
+                                                                                   <https://hcis.io/ontology/aicapstone/2026/Task> .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
