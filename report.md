@@ -17,6 +17,8 @@ The goal is to model simulated task objects as typed ontology individuals,
 connect them to task roles and manipulation affordances, and derive which
 objects are graspable by a robot agent with a gripper.
 
+Repository URL: <https://github.com/k77914/semantic-affordance-grounding>
+
 ## 2. Repository Contents
 
 | Path | Description |
@@ -34,6 +36,15 @@ objects are graspable by a robot agent with a gripper.
 | `results/shacl_validation_report.txt` | Generated SHACL validation report. |
 | `results/screenshots/` | Optional GUI verification screenshots. |
 | `src/run_reasoning.py`, `src/run_validation.py` | Headless result-generation and SHACL validation scripts. |
+
+Key repository links:
+
+- [Group ontology](https://github.com/k77914/semantic-affordance-grounding/blob/main/ontology/group-ontology.ttl)
+- [Imported course ontology](https://github.com/k77914/semantic-affordance-grounding/blob/main/ontology/imports/course-affordance.ttl)
+- [Inferred results](https://github.com/k77914/semantic-affordance-grounding/blob/main/ontology/inferred-results.ttl)
+- [Graspable objects query](https://github.com/k77914/semantic-affordance-grounding/blob/main/queries/graspable_objects.rq)
+- [Query output](https://github.com/k77914/semantic-affordance-grounding/blob/main/results/graspable_objects_output.txt)
+- [Reasoning script](https://github.com/k77914/semantic-affordance-grounding/blob/main/src/run_reasoning.py)
 
 ## 3. Namespace Policy
 
@@ -54,6 +65,11 @@ task roles, affordance classes, properties, and the inferred class
 `cap:GraspableObject`. The `g13:` namespace is used for group-specific
 individuals, local advanced-task classes, group metadata, and local affordance
 individuals.
+
+Reused terms come from the shared `cap:` namespace, including object classes,
+task roles, affordance classes, and grounding properties. Newly introduced Group
+13 terms use the `g13:` namespace, including advanced dining-cleanup classes,
+local affordance individuals, task roles, and object instances.
 
 ## 4. Ontology Design
 

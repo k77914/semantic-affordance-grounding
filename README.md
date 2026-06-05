@@ -5,6 +5,8 @@ for AI Capstone Homework 5. It models course task objects, task roles,
 manipulation affordances, and inferred graspability for a robot agent with a
 gripper.
 
+Repository URL: <https://github.com/k77914/semantic-affordance-grounding>
+
 ## Group Members
 
 | Name | Student ID |
@@ -45,6 +47,18 @@ and `vase` are modeled as task-relevant but non-graspable objects.
 | `results/screenshots/` | Optional screenshots from Protege, Fuseki, Jena, or another reasoning/query interface. |
 | `src/run_reasoning.py` | Headless RDFLib workflow that materializes `cap:GraspableObject` memberships and regenerates the query output. |
 | `src/run_validation.py` | Headless SHACL validation workflow using pySHACL. |
+
+## Key Files
+
+- [Group ontology](https://github.com/k77914/semantic-affordance-grounding/blob/main/ontology/group-ontology.ttl)
+- [Imported course ontology](https://github.com/k77914/semantic-affordance-grounding/blob/main/ontology/imports/course-affordance.ttl)
+- [Imported alignment resource](https://github.com/k77914/semantic-affordance-grounding/blob/main/ontology/imports/course-alignment.ttl)
+- [Inferred results](https://github.com/k77914/semantic-affordance-grounding/blob/main/ontology/inferred-results.ttl)
+- [Graspable objects query](https://github.com/k77914/semantic-affordance-grounding/blob/main/queries/graspable_objects.rq)
+- [Task objects query](https://github.com/k77914/semantic-affordance-grounding/blob/main/queries/task_objects.rq)
+- [Query output](https://github.com/k77914/semantic-affordance-grounding/blob/main/results/graspable_objects_output.txt)
+- [Reasoning script](https://github.com/k77914/semantic-affordance-grounding/blob/main/src/run_reasoning.py)
+- [SHACL validation script](https://github.com/k77914/semantic-affordance-grounding/blob/main/src/run_validation.py)
 
 ## Namespaces
 
@@ -167,6 +181,12 @@ arq --data ontology/imports/course-affordance.ttl \
     --query queries/graspable_objects.rq \
     > results/graspable_objects_output.txt
 ```
+
+A Protégé DL Query screenshot is included at
+`results/screenshots/inferred_graspable_individuals.png`, showing that the class expression `physical object and (has affordance some grasping affordance)`
+returns the expected ten inferred graspable individuals.
+
+![Protégé DL Query result for inferred graspable individuals](results/screenshots/inferred_graspable_individuals.png)
 
 ## Structural Validation
 
