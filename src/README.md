@@ -1,31 +1,35 @@
 # Source
 
-This folder contains the headless reasoning + query workflow used to generate
-the inferred graph and the SPARQL output.
+This folder contains the headless result-generation and validation workflows used
+by the HW5 submission.
 
 ## `run_reasoning.py`
 
 A single self-contained script that:
 
-1. Merges `ontology/group-ontology.ttl` with the two imported files and strips
-   `owl:imports` so the reasoner does not resolve relative IRIs.
-2. Runs the **HermiT OWL 2 DL reasoner** (via `owlready2`, which calls the local
-   JRE) to classify individuals under `cap:GraspableObject`.
-3. Writes the inferred `rdf:type cap:GraspableObject` triples to
-   `ontology/inferred-results.ttl`.
-4. Executes `queries/graspable_objects.rq` over the asserted + inferred graph and
-   saves the formatted result to `results/graspable_objects_output.txt`.
+1. Loads `ontology/group-ontology.ttl` with the imported course ontology files.
+2. Materializes the `cap:GraspableObject` memberships implied by the HW5 rule:
 
-HermiT is a complete OWL 2 DL reasoner, so the `owl:equivalentClass` /
-`owl:someValuesFrom` graspability pattern is classified by genuine description-logic
-reasoning, not a hand-written rule layer. This satisfies the requirement in the
-homework spec (Option C) that a Python workflow must clearly document how
-`cap:GraspableObject` membership is derived rather than manually asserted.
+   ```text
+   cap:GraspableObject == cap:PhysicalObject
+                          and cap:hasAffordance some cap:GraspingAffordance
+   ```
+
+3. Writes those generated `rdf:type cap:GraspableObject` triples to
+   `ontology/inferred-results.ttl`.
+4. Executes `queries/graspable_objects.rq` over the asserted + generated graph
+   and saves the formatted result to `results/graspable_objects_output.txt`.
+
+The script is intentionally narrower than a full OWL DL reasoner. It supports
+the RDFS subclass hierarchy and the `owl:someValuesFrom` restrictions used by
+this submission, which is enough to reproduce the required graspability result
+without depending on a GUI reasoner or Java tooling.
 
 ### Requirements
 
-- Java (HermiT is a Java reasoner; tested with OpenJDK 21)
-- `pip install owlready2 rdflib`
+```bash
+python3 -m pip install rdflib
+```
 
 ### Run
 
@@ -40,20 +44,20 @@ This regenerates `ontology/inferred-results.ttl` and
 
 ## `run_validation.py`
 
-Runs SHACL structural validation (pyshacl) of `ontology/shapes.ttl` against the
-asserted graph and writes `results/shacl_validation_report.txt`. This is separate
-from OWL reasoning: OWL infers `cap:GraspableObject` membership, while SHACL checks
-that every object has the expected labels, task roles, and affordances, and that
-every manipulation target has a grasping affordance.
+Runs SHACL structural validation of `ontology/shapes.ttl` against the asserted
+graph and writes `results/shacl_validation_report.txt`. This is separate from
+reasoning: the reasoning workflow generates `cap:GraspableObject` membership,
+while SHACL checks that every object has the expected labels, task roles, and
+affordances.
 
 ```bash
-pip install pyshacl rdflib
+python3 -m pip install pyshacl rdflib
 python3 src/run_validation.py
 ```
 
-## Alternative GUI workflow
+## Alternative GUI Workflow
 
-The same result can be reproduced in Protege (open `group-ontology.ttl`, load the
-imports, run HermiT or Pellet, inspect the inferred members of
-`cap:GraspableObject`, and export the inferred axioms). See the project `README.md`
-and `report.md` for that workflow and for optional screenshot verification.
+The same ontology can be inspected in Protege. Open `group-ontology.ttl`, load
+the imports, run HermiT or Pellet, inspect the inferred members of
+`cap:GraspableObject`, and export the inferred axioms if a GUI reasoner artifact
+is required.

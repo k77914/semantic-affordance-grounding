@@ -133,6 +133,127 @@ g13:containmentAffordance
     rdfs:comment
         "The affordance indicating that an object can contain or receive other objects."@en .
 
+g13:WipingAffordance
+    a owl:Class ;
+    rdfs:subClassOf cap:Affordance ;
+    rdfs:label "wiping affordance"@en ;
+    rdfs:comment
+        "An affordance for using an object as a wiping tool in the dining-cleanup advanced task."@en .
+
+g13:StabilityAffordance
+    a owl:Class ;
+    rdfs:subClassOf cap:Affordance ;
+    rdfs:label "stability affordance"@en ;
+    rdfs:comment
+        "An affordance indicating that an object should remain stable and undisturbed in the dining-cleanup task."@en .
+
+g13:wipingAffordance
+    a g13:WipingAffordance ;
+    rdfs:label "wiping affordance"@en ;
+    rdfs:comment
+        "The affordance indicating that the cloth can be used to wipe the dining table region."@en .
+
+g13:stabilityAffordance
+    a g13:StabilityAffordance ;
+    rdfs:label "stability affordance"@en ;
+    rdfs:comment
+        "The affordance indicating that protected dining-scene objects should remain stable during cleanup."@en .
+
+#################################################################
+# Group13 advanced task classes and roles
+#################################################################
+
+g13:Bowl
+    a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "bowl"@en ;
+    rdfs:comment
+        "A bowl object in the dining-cleanup advanced task. It is a graspable tableware object to be moved into the tray."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom cap:GraspingAffordance
+    ] .
+
+g13:Spoon
+    a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "spoon"@en ;
+    rdfs:comment
+        "A spoon object in the dining-cleanup advanced task. It is a graspable tableware object to be moved into the tray."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom cap:GraspingAffordance
+    ] .
+
+g13:Cloth
+    a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "cloth"@en ;
+    rdfs:comment
+        "A cloth object in the dining-cleanup advanced task. It is graspable and can be used as a wiping tool."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom cap:GraspingAffordance
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom g13:WipingAffordance
+    ] .
+
+g13:Tray
+    a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "tray"@en ;
+    rdfs:comment
+        "A tray object in the dining-cleanup advanced task. It receives the bowl and spoon but is not modeled as graspable."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom cap:ContainmentAffordance
+    ] .
+
+g13:Tissue
+    a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "tissue"@en ;
+    rdfs:comment
+        "A tissue object in the dining-cleanup advanced task. It is protected and should remain stable rather than be grasped."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom g13:StabilityAffordance
+    ] .
+
+g13:Vase
+    a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "vase"@en ;
+    rdfs:comment
+        "A vase object in the dining-cleanup advanced task. It is protected and should remain stable rather than be grasped."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom g13:StabilityAffordance
+    ] .
+
+g13:CleanupTool
+    a owl:Class ;
+    rdfs:subClassOf cap:TaskRole ;
+    rdfs:label "cleanup tool"@en ;
+    rdfs:comment
+        "A task role for an object used as a tool during dining cleanup, such as the cloth used for wiping."@en .
+
+g13:ProtectedObject
+    a owl:Class ;
+    rdfs:subClassOf cap:TaskRole ;
+    rdfs:label "protected object"@en ;
+    rdfs:comment
+        "A task role for objects that should remain stable and undisturbed during the dining-cleanup task."@en .
+
 #################################################################
 # Baseline task object instances
 #################################################################
@@ -199,6 +320,26 @@ g13:block01
     cap:hasAffordance g13:graspingAffordance ;
     cap:hasPoseFrame "world/object_block_01" .
 
+g13:block02
+    a cap:ToyBlock ;
+    rdfs:label "toy block 02"@en ;
+    rdfs:comment
+        "A toy block instance that should be collected into the basket."@en ;
+    cap:hasObjectLabel "toy_block" ;
+    cap:hasTaskRole cap:CollectableObject ;
+    cap:hasAffordance g13:graspingAffordance ;
+    cap:hasPoseFrame "world/object_block_02" .
+
+g13:block03
+    a cap:ToyBlock ;
+    rdfs:label "toy block 03"@en ;
+    rdfs:comment
+        "A toy block instance that should be collected into the basket."@en ;
+    cap:hasObjectLabel "toy_block" ;
+    cap:hasTaskRole cap:CollectableObject ;
+    cap:hasAffordance g13:graspingAffordance ;
+    cap:hasPoseFrame "world/object_block_03" .
+
 g13:basket01
     a cap:Basket ;
     rdfs:label "basket 01"@en ;
@@ -233,5 +374,77 @@ g13:toyBlockCollectionTask
     rdfs:label "toy block collection task"@en ;
     rdfs:comment
         "The baseline task in which toy blocks are collected into a basket."@en ;
-    cap:hasTargetObject g13:block01 ;
+    cap:hasTargetObject g13:block01, g13:block02, g13:block03 ;
     cap:hasReferenceObject g13:basket01 .
+
+#################################################################
+# Advanced task: dining cleanup
+#################################################################
+
+g13:bowl01
+    a g13:Bowl ;
+    rdfs:label "bowl 01"@en ;
+    rdfs:comment
+        "The bowl object from the dining-cleanup advanced task configuration. It is a graspable object to be placed into the tray."@en ;
+    cap:hasObjectLabel "bowl" ;
+    cap:hasTaskRole cap:TargetObject ;
+    cap:hasAffordance g13:graspingAffordance ;
+    cap:hasPoseFrame "Scene/bowl" .
+
+g13:spoon01
+    a g13:Spoon ;
+    rdfs:label "spoon 01"@en ;
+    rdfs:comment
+        "The spoon object from the dining-cleanup advanced task configuration. It is a graspable object to be placed into the tray."@en ;
+    cap:hasObjectLabel "spoon" ;
+    cap:hasTaskRole cap:TargetObject ;
+    cap:hasAffordance g13:graspingAffordance ;
+    cap:hasPoseFrame "Scene/spoon" .
+
+g13:cloth01
+    a g13:Cloth ;
+    rdfs:label "cloth 01"@en ;
+    rdfs:comment
+        "The cloth object from the dining-cleanup advanced task configuration. It is graspable and serves as the wiping tool."@en ;
+    cap:hasObjectLabel "cloth" ;
+    cap:hasTaskRole g13:CleanupTool ;
+    cap:hasAffordance g13:graspingAffordance, g13:wipingAffordance ;
+    cap:hasPoseFrame "Scene/cloth" .
+
+g13:tray01
+    a g13:Tray ;
+    rdfs:label "tray 01"@en ;
+    rdfs:comment
+        "The tray object from the dining-cleanup advanced task configuration. It receives the bowl and spoon but is not modeled as graspable."@en ;
+    cap:hasObjectLabel "tray" ;
+    cap:hasTaskRole cap:ContainerTarget ;
+    cap:hasAffordance g13:containmentAffordance, g13:supportAffordance ;
+    cap:hasPoseFrame "Scene/tray" .
+
+g13:tissue01
+    a g13:Tissue ;
+    rdfs:label "tissue 01"@en ;
+    rdfs:comment
+        "The tissue object from the dining-cleanup advanced task configuration. It is a protected object and is not modeled as graspable."@en ;
+    cap:hasObjectLabel "tissue" ;
+    cap:hasTaskRole g13:ProtectedObject ;
+    cap:hasAffordance g13:stabilityAffordance ;
+    cap:hasPoseFrame "Scene/tissue" .
+
+g13:vase01
+    a g13:Vase ;
+    rdfs:label "vase 01"@en ;
+    rdfs:comment
+        "The vase object from the dining-cleanup advanced task configuration. It is a protected object and is not modeled as graspable."@en ;
+    cap:hasObjectLabel "vase" ;
+    cap:hasTaskRole g13:ProtectedObject ;
+    cap:hasAffordance g13:stabilityAffordance ;
+    cap:hasPoseFrame "Scene/vase" .
+
+g13:diningCleanupTask
+    a cap:ManipulationTask ;
+    rdfs:label "dining cleanup task"@en ;
+    rdfs:comment
+        "The Group 13 advanced task in which the bowl and spoon are placed into the tray, the cloth wipes the table, and the vase and tissue remain protected."@en ;
+    cap:hasTargetObject g13:bowl01, g13:spoon01, g13:cloth01 ;
+    cap:hasReferenceObject g13:tray01, g13:tissue01, g13:vase01 .
